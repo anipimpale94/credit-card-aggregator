@@ -1,0 +1,82 @@
+.transaction-list-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.transaction-header {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.transaction-header h2 {
+  font-size: 18px;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.sort-select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.transaction-list {
+  overflow-x: auto;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.no-transactions {
+  padding: 40px 20px;
+  text-align: center;
+  color: #999;
+}
+
+.transactions-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.transactions-table thead {
+  background-color: #f9f9f9;
+  position: sticky;
+  top: 0;
+}
+
+.transactions-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 13px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #eee;
+}
+
+.transactions-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.transactions-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.amount {
+  text-align: right;
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+}
+
+.amount.negative {
+  color: #e74c3c;
+}

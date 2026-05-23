@@ -1,0 +1,99 @@
+.budget-tracker-container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.budget-tracker-container h2 {
+  font-size: 18px;
+  color: #2c3e50;
+  margin: 0 0 20px 0;
+}
+
+.no-data {
+  padding: 40px 20px;
+  text-align: center;
+  color: #999;
+}
+
+.budget-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.budget-item {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.budget-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.budget-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.category-name {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 14px;
+}
+
+.amount-spent {
+  color: #e74c3c;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.budget-input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.budget-input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background-color: #ecf0f1;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #27ae60;
+  transition: width 0.3s ease;
+}
+
+.progress-bar.over-budget .progress-fill {
+  background-color: #e74c3c;
+}
+
+.budget-status {
+  font-size: 12px;
+  margin: 0;
+}
+
+.budget-status.under {
+  color: #27ae60;
+}
+
+.budget-status.over {
+  color: #e74c3c;
+}

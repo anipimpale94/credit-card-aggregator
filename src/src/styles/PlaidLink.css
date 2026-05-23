@@ -1,0 +1,55 @@
+.plaid-container {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.plaid-card {
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.plaid-card h2 {
+  font-size: 24px;
+  color: #2c3e50;
+  margin: 0 0 12px 0;
+}
+
+.plaid-card p {
+  color: #666;
+  margin: 0 0 30px 0;
+  line-height: 1.5;
+}
+
+.connect-btn {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.connect-btn:hover:not(:disabled) {
+  background-color: #2980b9;
+}
+
+.connect-btn:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.message {
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: 4px;
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}

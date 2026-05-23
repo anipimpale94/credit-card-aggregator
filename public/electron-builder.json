@@ -1,0 +1,28 @@
+{
+  "appId": "com.creditcardaggregator.app",
+  "productName": "Credit Card Aggregator",
+  "files": [
+    "public/**/*",
+    "src/build/**/*",
+    "node_modules/**/*"
+  ],
+  "directories": {
+    "buildResources": "assets"
+  },
+  "win": {
+    "target": [
+      "nsis",
+      "portable"
+    ]
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true
+  },
+  "mac": {
+    "target": [
+      "dmg",
+      "zip"
+    ]
+  }
+}
