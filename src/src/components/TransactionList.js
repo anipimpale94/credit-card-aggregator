@@ -2,8 +2,13 @@ import React, { useState } from 'react';
 import { format } from 'date-fns';
 import '../styles/TransactionList.css';
 
-function TransactionList({ transactions }) {
+function TransactionList({ transactions, accounts = [] }) {
   const [sortBy, setSortBy] = useState('date-desc');
+
+  const accountMap = accounts.reduce((map, acc) => {
+    map[acc.id] = acc;
+    return map;
+  }, {});
 
   const sorted = [...transactions].sort((a, b) => {
     switch (sortBy) {
@@ -41,19 +46,24 @@ function TransactionList({ transactions }) {
               <tr>
                 <th>Date</th>
                 <th>Description</th>
+                <th>Account</th>
                 <th>Category</th>
                 <th className="amount">Amount</th>
               </tr>
             </thead>
             <tbody>
-              {sorted.map((transaction) => (
-                <tr key={transaction.id}>
-                  <td>{format(new Date(transaction.date), 'MMM dd, yyyy')}</td>
-                  <td>{transaction.name}</td>
-                  <td>{transaction.category || 'Other'}</td>
-                  <td className="amount negative">${transaction.amount.toFixed(2)}</td>
-                </tr>
-              ))}
+              {sorted.map((transaction) => {
+                const account = accountMap[transaction.account_id];
+                return (
+                  <tr key={transaction.id}>
+                    <td>{format(new Date(transaction.date), 'MMM dd, yyyy')}</td>
+                    <td>{transaction.name}</td>
+                    <td>{account ? `${account.name} (${account.mask})` : 'Unknown'}</td>
+                    <td>{transaction.category || 'Other'}</td>
+                    <td className="amount negative">{transaction.amount.toFixed(2)}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         )}

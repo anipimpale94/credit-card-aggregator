@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from 'react';
 import TransactionList from '../components/TransactionList';
-import BudgetTracker from '../components/BudgetTracker';
 import SpendingChart from '../components/SpendingChart';
 import '../styles/Dashboard.css';
 
@@ -87,11 +86,10 @@ function Dashboard({ accounts, transactions, loading }) {
       <div className="dashboard-content">
         <div className="left-section">
           <SpendingChart data={spendingByCategory} />
-          <BudgetTracker spendingByCategory={spendingByCategory} />
         </div>
 
         <div className="right-section">
-          <TransactionList transactions={filteredTransactions} />
+          <TransactionList transactions={filteredTransactions} accounts={accounts} />
         </div>
       </div>
     </div>
