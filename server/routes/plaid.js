@@ -51,10 +51,12 @@ router.post('/exchange-token', async (req, res) => {
     });
 
     const accountsData = authResponse.data.accounts;
+    const accountMap = {}; // Map Plaid account IDs to generated UUIDs
 
     // Store accounts in database
     accountsData.forEach(account => {
       const id = uuidv4();
+      accountMap[account.account_id] = id;
       const sql = `
         INSERT INTO accounts (id, plaid_account_id, access_token, name, mask, type, subtype)
         VALUES (?, ?, ?, ?, ?, ?, ?)
@@ -84,23 +86,25 @@ router.post('/exchange-token', async (req, res) => {
 
     transactions.forEach(transaction => {
       const id = uuidv4();
-      const accountId = accountsData.find(a => a.account_id === transaction.account_id)?.account_id;
-      const sql = `
-        INSERT INTO transactions (id, account_id, plaid_transaction_id, name, amount, date, category, type, pending)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-        ON CONFLICT(plaid_transaction_id) DO NOTHING
-      `;
-      db.run(sql, [
-        id,
-        accountId,
-        transaction.transaction_id,
-        transaction.name,
-        transaction.amount,
-        transaction.date,
-        transaction.personal_finance_category?.primary || 'Other',
-        transaction.transaction_type,
-        transaction.pending ? 1 : 0,
-      ]);
+      const accountId = accountMap[transaction.account_id];
+      if (accountId) {
+        const sql = `
+          INSERT INTO transactions (id, account_id, plaid_transaction_id, name, amount, date, category, type, pending)
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+          ON CONFLICT(plaid_transaction_id) DO NOTHING
+        `;
+        db.run(sql, [
+          id,
+          accountId,
+          transaction.transaction_id,
+          transaction.name,
+          transaction.amount,
+          transaction.date,
+          transaction.personal_finance_category?.primary || 'Other',
+          transaction.transaction_type,
+          transaction.pending ? 1 : 0,
+        ]);
+      }
     });
 
     res.json({ success: true });

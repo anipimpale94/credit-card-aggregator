@@ -44,7 +44,7 @@ const initDatabase = () => {
         CREATE TABLE IF NOT EXISTS budgets (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           category TEXT NOT NULL,
-          limit REAL NOT NULL,
+          "limit" REAL NOT NULL,
           created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
           updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )
